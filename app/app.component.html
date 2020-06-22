@@ -1,0 +1,67 @@
+
+
+<div class="app-background">
+<div class="toolbar">
+  <span class="covid-outbreak">COVID-19 Report</span>
+</div>
+
+<div class="content" role="main">
+
+  <!-- Highlight Card -->
+  <div class="card highlight-card card-small">
+    <span>{{ title }}</span>
+
+    <svg id="rocket-smoke" alt="Rocket Ship Smoke" xmlns="http://www.w3.org/2000/svg" width="516.119" height="1083.632" viewBox="0 0 516.119 1083.632">
+      <path id="Path_40" data-name="Path 40" d="M644.6,141S143.02,215.537,147.049,870.207s342.774,201.755,342.774,201.755S404.659,847.213,388.815,762.2c-27.116-145.51-11.551-384.124,271.9-609.1C671.15,139.365,644.6,141,644.6,141Z" transform="translate(-147.025 -140.939)" fill="#f5f5f5"/>
+    </svg>
+  </div>
+  <div class="card-container">
+    <div class="covid-cases">
+      <div class="text-color">Confirmed</div>
+      <div class="confirmed-cases">{{ indiaData?.totalConfirmed }}</div>
+    </div>
+    <div class="covid-cases">
+      <div class="text-color">Recovered</div>
+      <div class="recovered-cases">{{ indiaData?.totalRecovered }}</div>
+    </div>
+    <div class="covid-cases">
+      <div class="text-color">Deaths</div>
+      <div class="death"> {{ indiaData?.totalDeaths }} </div>
+    </div>
+  </div>
+  <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z2 padding-left">
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="position">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> No. </th>
+        <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="statename">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> State </th>
+        <td mat-cell *matCellDef="let element" class="padding"> {{element.statename}} </td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="confirmed">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Confirmed </th>
+        <td mat-cell *matCellDef="let element"> {{element.total}} </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="recovered">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Recovered </th>
+        <td mat-cell *matCellDef="let element"> {{element.recovered}} </td>
+    </ng-container>
+    <ng-container matColumnDef="death">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Death </th>
+        <td mat-cell *matCellDef="let element"> {{element.death}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+<router-outlet></router-outlet>
+<footer class="footer">Website by bhargavi sainni</footer>
+  </div>
